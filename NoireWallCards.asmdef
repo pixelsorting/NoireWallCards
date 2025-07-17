@@ -1,0 +1,28 @@
+{
+    "name": "NoireWallCards",
+    "references": [
+        "UnboundLib",
+        "ModdingUtils",
+        "RarityLib",
+        "CardThemeLib"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "0Harmony.dll",
+        "BepInEx.dll",
+        "Assembly-CSharp.dll",
+        "Photon3Unity3D.dll",
+        "PhotonRealtime.dll",
+        "PhotonUnityNetworking.dll",
+        "PhotonUnityNetworking.Utilities.dll",
+        "PhotonWebSocket.dll",
+        "SimulationChamber.dll",
+        "SonigonAudioEngine.Runtime.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
