@@ -45,12 +45,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1043437007509817}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98b2bbcc09027464da20acbbb271927e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rarityName: Common
+  rarityName: Exotic
 --- !u!114 &114554239418549338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,11 +84,11 @@ MonoBehaviour:
     decreased lifetime, and friendly fire still applies
   cardStats:
   - positive: 1
-    amount: "\u221E"
+    amount: +inf
     simepleAmount: 0
     stat: Wraps
   - positive: 1
-    amount: -75%
+    amount: -65%
     simepleAmount: 0
     stat: Bullet Gravity
   - positive: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
     simepleAmount: 0
     stat: Bullet Lifetime
   rarity: 0
-  cardArt: {fileID: 0}
+  cardArt: {fileID: 7210864875327102933, guid: 48524b6005a6eb3439f2877da0123072, type: 3}
   sprite: {fileID: 21300000, guid: 5b742d082ddefaa489468fac5e1e3bff, type: 2}
   sourceCard: {fileID: 0}
   cardColor: {r: 0.10568709, g: 0.18812303, b: 0.23584908, a: 1}
@@ -108,7 +108,7 @@ MonoBehaviour:
   allowMultiple: 0
   blacklistedCategories: []
   cardBase: {fileID: 1720757555582362, guid: ab7829e25091330408953c12456bfb86, type: 3}
-  colorTheme: 0
+  colorTheme: 4
 --- !u!114 &114081461618018503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,9 +188,9 @@ MonoBehaviour:
   recoilMuiltiplier: 1
   knockback: 1
   attackSpeed: 1
-  projectileSpeed: 1
+  projectileSpeed: 0.55
   projectielSimulatonSpeed: 1
-  gravity: 1
+  gravity: 0.35
   damageAfterDistanceMultiplier: 1
   bulletDamageMultiplier: 1
   multiplySpread: 1
@@ -223,7 +223,7 @@ MonoBehaviour:
   chargeSpeedTo: 0
   chargeRecoilTo: 0
   chargeNumberOfProjectilesTo: 0
-  destroyBulletAfter: 0
+  destroyBulletAfter: 5
   forceSpecificAttackSpeed: 0
   lockGunToDefault: 0
   unblockable: 0
@@ -231,8 +231,24 @@ MonoBehaviour:
   currentCharge: 0
   useCharge: 0
   dontAllowAutoFire: 0
-  objectsToSpawn: []
-  projectileColor: {r: 0, g: 0, b: 0, a: 1}
+  objectsToSpawn:
+  - effect: {fileID: 0}
+    direction: 0
+    spawnOn: 0
+    spawnAsChild: 0
+    numberOfSpawns: 0
+    normalOffset: 0
+    stickToBigTargets: 0
+    stickToAllTargets: 0
+    zeroZ: 0
+    AddToProjectile: {fileID: 6258356979089036377, guid: 409fb7a0b4923c44d99fbf97abcc4f00,
+      type: 3}
+    removeScriptsFromProjectileObject: 0
+    scaleStacks: 0
+    scaleStackM: 0
+    scaleFromDamage: 0
+    stacks: 0
+  projectileColor: {r: 0.7019608, g: 0.4039216, b: 0.7176471, a: 1}
   waveMovement: 0
   teleport: 0
   spawnSkelletonSquare: 0

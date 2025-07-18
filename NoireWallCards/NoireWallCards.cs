@@ -18,7 +18,7 @@ namespace NoireWallCards
     {
         private const string ModId = "pixelsorting.rounds.noirewallcards";
         private const string ModName = "Noire Wall Cards";
-        public const string Version = "0.1.1";
+        public const string Version = "0.1.5";
         internal static string modInitials = "NWC";
 
         internal static AssetBundle assets;

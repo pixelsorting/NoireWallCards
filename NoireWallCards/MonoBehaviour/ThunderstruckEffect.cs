@@ -11,7 +11,7 @@ using HarmonyLib;
 
 namespace NoireWallCards
 {
-    public class LightningOnHit : HitSurfaceEffect
+    public class ThunderstruckEffect : HitSurfaceEffect
     {
         GameObject thunderstruckParticleEffect;
         Player player;
