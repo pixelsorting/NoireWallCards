@@ -45,12 +45,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1043437007509817}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98b2bbcc09027464da20acbbb271927e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rarityName: Exotic
+  rarityName: Rare
 --- !u!114 &114554239418549338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,8 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundDisableBlockBasic: 0
   cardName: Continuum
-  cardDestription: Your bullets ignore walls and wrap around from the screen but have
-    decreased lifetime, and friendly fire still applies
+  cardDestription: Your bullets wrap around the screen but have decreased lifetime
   cardStats:
   - positive: 1
     amount: +inf
@@ -99,7 +98,7 @@ MonoBehaviour:
     amount: 5s
     simepleAmount: 0
     stat: Bullet Lifetime
-  rarity: 0
+  rarity: 1
   cardArt: {fileID: 7210864875327102933, guid: 48524b6005a6eb3439f2877da0123072, type: 3}
   sprite: {fileID: 21300000, guid: 5b742d082ddefaa489468fac5e1e3bff, type: 2}
   sourceCard: {fileID: 0}
