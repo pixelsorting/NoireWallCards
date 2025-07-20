@@ -37,7 +37,7 @@ namespace NoireWallCards
             if (!isInit)
             {
                 PhotonNetwork.PrefabPool.RegisterPrefab(ContinuumAssets.ContinuumWarp.name, ContinuumAssets.ContinuumWarp);
-                FixedOutOfBoundsHelpers.SkipEmbigBouncePatch = true;
+                FixedOutOfBoundsHelpers.SkipScreenEdgeBouncePatch = true;
             }
         }
         void Start()

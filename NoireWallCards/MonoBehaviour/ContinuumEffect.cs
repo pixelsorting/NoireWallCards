@@ -89,16 +89,17 @@ namespace NoireWallCards
             this.projectile.GetAdditionalData().startTime = Time.time;
             this.projectile.GetAdditionalData().inactiveDelay = float.MaxValue;
 
-            
+
             //FixedOutOfBoundsHelpers.SkipEmbigBouncePatch = false;
 
             // don't waste reflects bouncing off the border infinitely
-            if (rayHitReflect != null)
+            // ! Should not be needed anymore with the harmony patch !
+            /* if (rayHitReflect != null)
             {
                 
                 this.bounceCount = rayHitReflect.reflects;
                 this.rayHitReflect.reflects = 0;
-            }
+            } */
 
             // without disabling rendering the projectile can interact with the entire map while moving to the other side
             TrailRenderer[] trailRenderers = this.projectile.GetComponentsInChildren<TrailRenderer>();
@@ -119,17 +120,24 @@ namespace NoireWallCards
             
             
 
-            this.ExecuteAfterFrames(6, () =>
+            this.ExecuteAfterFrames(3, () =>
             {
                 foreach (Renderer r in renderers) { r.enabled = true; }
                 foreach (TrailRenderer tr in trailRenderers) { tr.Clear(); }
                 foreach (ParticleSystem ps in particleSystems) { ps.Clear(withChildren: true); }
+                
+            });
+
+            this.ExecuteAfterFrames(5, () =>
+            {
+                // hack to fix the weird issue where it just falls flat, works most of the time ?
                 this.parent.GetComponent<MoveTransform>().velocity = vel;
-                if (this.rayHitReflect != null) this.rayHitReflect.reflects = this.bounceCount;
+
+                // ! Should not be needed with the harmony patch !
+                //if (this.rayHitReflect != null) this.rayHitReflect.reflects = this.bounceCount; 
 
                 this.projectile.GetAdditionalData().inactiveDelay = 0f;
             });
-
 
         }
 

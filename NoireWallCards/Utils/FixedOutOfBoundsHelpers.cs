@@ -7,7 +7,7 @@ namespace NoireWallCards
 {
     internal class FixedOutOfBoundsHelpers
     {
-        internal static bool SkipEmbigBouncePatch = false;
+        internal static bool SkipScreenEdgeBouncePatch = false;
         internal static Transform Border = null;
         internal static RectTransform BorderRect
         {
@@ -41,7 +41,9 @@ namespace NoireWallCards
 
         private static Vector3 RotateFromBoundsFrame(Vector3 point)
         {
+            return point;
 
+            // ignored because i'm not sure it's necessary (why would the bound be rotated?)
             float cos = Mathf.Cos(Mathf.PI * BorderRect.rotation.eulerAngles.z / 180f);
             float sin = Mathf.Sin(Mathf.PI * BorderRect.rotation.eulerAngles.z / 180f);
             return new Vector3(cos * point.x + sin * point.y, -sin * point.x + cos * point.y, point.z);

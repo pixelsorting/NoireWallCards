@@ -24,7 +24,7 @@ namespace NoireWallCards
     {
         private const string ModId = "pixelsorting.rounds.noirewallcards";
         private const string ModName = "Noire Wall Cards";
-        public const string Version = "0.1.7";
+        public const string Version = "0.1.8";
         internal static string modInitials = "NWC";
 
         internal static AssetBundle assets;
@@ -38,7 +38,13 @@ namespace NoireWallCards
 
         void Start()
         {
+            GameModeManager.AddHook(GameModeHooks.HookGameStart, ResetBouncePatchStatusOnGameStart);
+        }
 
+        private IEnumerator ResetBouncePatchStatusOnGameStart(IGameModeHandler _)
+        {
+            FixedOutOfBoundsHelpers.SkipScreenEdgeBouncePatch = false;
+            yield return null;
         }
     }
 
@@ -59,7 +65,7 @@ namespace NoireWallCards
         [HarmonyPrefix]
         public static bool Prefix(ScreenEdgeBounce __instance, PhotonView ___view, ref bool ___done, Camera ___mainCam, ref Vector2 ___lastNormal, RayHitReflect ___reflect, ref float ___sinceBounce)
         {
-            if(FixedOutOfBoundsHelpers.SkipEmbigBouncePatch && ___view.IsMine)
+            if(FixedOutOfBoundsHelpers.SkipScreenEdgeBouncePatch && ___view.IsMine)
             {
                 ___done = true;
                 return false;
