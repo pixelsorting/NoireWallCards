@@ -8,9 +8,13 @@ using UnboundLib;
 using UnityEngine.SceneManagement;
 using HarmonyLib;
 using Photon.Pun;
+using System.Runtime.CompilerServices;
+using ModdingUtils.Extensions;
+using System.Reflection;
 
 namespace NoireWallCards
 {
+    // Hard deps
     [BepInDependency("com.willis.rounds.unbound", BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("pykess.rounds.plugins.moddingutils", BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("pykess.rounds.plugins.cardchoicespawnuniquecardpatch", BepInDependency.DependencyFlags.HardDependency)]
@@ -18,13 +22,15 @@ namespace NoireWallCards
     [BepInDependency("root.rarity.lib", BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("com.CrazyCoders.Rounds.RarityBundle", BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("com.willuwontu.rounds.simulationChamber", BepInDependency.DependencyFlags.HardDependency)]
+    // Soft deps
+    [BepInDependency("io.olavim.rounds.clientsideblock", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInPlugin(ModId, ModName, Version)]
     [BepInProcess("Rounds.exe")]
     public class NoireWallCards : BaseUnityPlugin
     {
         private const string ModId = "pixelsorting.rounds.noirewallcards";
         private const string ModName = "Noire Wall Cards";
-        public const string Version = "0.1.8";
+        public const string Version = "0.1.9";
         internal static string modInitials = "NWC";
 
         internal static AssetBundle assets;
@@ -58,6 +64,8 @@ namespace NoireWallCards
         }
     }
 
+
+    // might not be necessary anymore
     [HarmonyPatch(typeof(ScreenEdgeBounce), "Update")]
     public class MapEmbiggenerBouncePatch
     {

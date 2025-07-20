@@ -24,8 +24,6 @@ namespace NoireWallCards
             GameObject parent = PhotonView.Find((int)instantiationData[0]).gameObject;
 
             this.gameObject.transform.SetParent(parent.transform);
-
-
         }
 
         void Start()
@@ -46,15 +44,14 @@ namespace NoireWallCards
             this.view = this.gameObject.GetComponent<PhotonView>();
 
             this.outOfBoundsHandler = this.player.GetComponent<ChildRPC>().childRPCs["OutOfBounds"].Target as OutOfBoundsHandler;
-
         }
 
         void Update()
         {
             if (this.parent == null) return;
 
-            Vector2 boundPos_ = FixedOutOfBoundsHelpers.BoundsPointFromWorldPosition(this.outOfBoundsHandler, this.transform.position);
-            Vector3 boundPos = new Vector3(boundPos_.x, boundPos_.y, this.transform.position.z);
+            Vector2 boundPos_ = FixedOutOfBoundsHelpers.BoundsPointFromWorldPosition(this.outOfBoundsHandler, this.parent.transform.position);
+            Vector3 boundPos = new Vector3(boundPos_.x, boundPos_.y, this.parent.transform.position.z);
 
             bool shouldWrap = false;
 
@@ -89,6 +86,8 @@ namespace NoireWallCards
             this.projectile.GetAdditionalData().startTime = Time.time;
             this.projectile.GetAdditionalData().inactiveDelay = float.MaxValue;
 
+            // it took me 3 days to figure out how to fix out of bounds collisions and it was this one single line
+            this.parent.GetComponent<RayCastTrail>().enabled = false;
 
             //FixedOutOfBoundsHelpers.SkipEmbigBouncePatch = false;
 
@@ -110,16 +109,9 @@ namespace NoireWallCards
             foreach (TrailRenderer tr in trailRenderers) { tr.Clear(); }
             foreach (ParticleSystem ps in particleSystems) { ps.Clear(withChildren: true); }
 
-            //Vector2 wrapPos = OutOfBoundsHandlerExtensions.WorldPositionFromBoundsPoint(this.outOfBoundsHandler, new Vector2(x, y));
             Vector2 wrapPos = this.outOfBoundsHandler.WorldPositionFromBoundsPoint(new Vector2(x, y));
-            
-            Vector3 vel = this.parent.GetComponent<MoveTransform>().velocity;
-
             this.parent.transform.position = new Vector3(wrapPos.x, wrapPos.y, z);
             
-            
-            
-
             this.ExecuteAfterFrames(3, () =>
             {
                 foreach (Renderer r in renderers) { r.enabled = true; }
@@ -127,11 +119,10 @@ namespace NoireWallCards
                 foreach (ParticleSystem ps in particleSystems) { ps.Clear(withChildren: true); }
                 
             });
-
-            this.ExecuteAfterFrames(5, () =>
+            
+            this.ExecuteAfterFrames(2, () =>
             {
-                // hack to fix the weird issue where it just falls flat, works most of the time ?
-                this.parent.GetComponent<MoveTransform>().velocity = vel;
+                this.parent.GetComponent<RayCastTrail>().enabled = true;
 
                 // ! Should not be needed with the harmony patch !
                 //if (this.rayHitReflect != null) this.rayHitReflect.reflects = this.bounceCount; 
